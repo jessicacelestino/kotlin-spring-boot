@@ -3,7 +3,6 @@ package com.mercadolivro.controller.response
 import com.mercadolivro.enums.BookStatusEnum
 import com.mercadolivro.model.CustomerModel
 import java.math.BigDecimal
-import javax.persistence.*
 
 data class BookResponse(
 
