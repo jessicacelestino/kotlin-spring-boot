@@ -58,5 +58,4 @@ class BookService(
         books.map{it.status = BookStatusEnum.SOLDED}
         bookRepository.saveAll(books)
     }
-
 }
