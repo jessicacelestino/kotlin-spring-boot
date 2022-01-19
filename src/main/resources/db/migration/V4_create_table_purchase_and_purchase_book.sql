@@ -6,6 +6,7 @@ create table purchase(
     created_at DATETIME not null,
     FOREIGN KEY (customer_id) REFERENCES customer (id)
 );
+
 create table purchase_book (
     purchase_id int not null,
     book_id     int not null,
