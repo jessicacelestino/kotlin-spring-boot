@@ -2,7 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+#    show-sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/mercadolivro?createDatabaseIfNotExist=true
     username: root
