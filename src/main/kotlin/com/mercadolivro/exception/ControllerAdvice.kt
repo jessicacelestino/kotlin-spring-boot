@@ -13,6 +13,7 @@ import org.springframework.web.context.request.WebRequest
 
 @RestControllerAdvice
 class ControllerAdvice {
+
     @ExceptionHandler(NotFoundException::class)
     fun handleNotFoundException(
         ex: NotFoundException,
