@@ -86,7 +86,7 @@ class CustomerServiceTest {
     fun updateCustomerNotExistsId() {
         val fakeCustomer = buildCustomer()
         `when`(customerRepository.existsById(anyInt())).thenReturn(false)
-        assertThrows<NotFoundException> {  customerService.update(fakeCustomer) }
+        assertThrows<NotFoundException> { customerService.update(fakeCustomer) }
     }
 
     @Test
@@ -94,7 +94,6 @@ class CustomerServiceTest {
         val id = Random().nextInt()
         val status = CustomerStatusEnum.INACTIVE
         val fakeCustomer = buildCustomer(status = status)
-
         `when`(customerRepository.findById(id)).thenReturn(Optional.of(fakeCustomer))
         bookService.deleteByCustomer(fakeCustomer)
         customerRepository.deleteById(id)
@@ -104,22 +103,19 @@ class CustomerServiceTest {
 
     @Test
     fun emailAvailable() {
-        val email = "${Random().nextInt().toString()}@test.com"
+        val email = "${Random().nextInt()}@test.com"
         `when`(customerRepository.existsByEmail(email)).thenReturn(false)
-
-        val emailAvailable  = customerService.emailAvailable(email)
+        val emailAvailable = customerService.emailAvailable(email)
         assertTrue(emailAvailable)
     }
 
     @Test
     fun emailAvailableFalse() {
-        val email = "${Random().nextInt().toString()}@test.com"
+        val email = "${Random().nextInt()}@test.com"
         `when`(customerRepository.existsByEmail(email)).thenReturn(true)
-
-        val emailAvailable  = customerService.emailAvailable(email)
+        val emailAvailable = customerService.emailAvailable(email)
         assertFalse(emailAvailable)
     }
-
 
     private fun buildCustomer(
         id: Int? = 1,
