@@ -22,7 +22,6 @@ import org.springframework.context.ApplicationEventPublisher
 import java.math.BigDecimal
 import java.util.*
 
-@SpringBootTest
 @ExtendWith(MockitoExtension::class)
 class PurchaseServiceTest {
 
@@ -44,10 +43,12 @@ class PurchaseServiceTest {
         val purchase = buildPurchase()
 
        `when`(purchaseRepository.save(purchase)).thenReturn(purchase)
-        applicationEventPublisher.publishEvent(PurchaseEvent(this, purchase))
 
         purchaseService.created(purchase)
-        assertEquals(purchase, captor.capture().purchaseModel)
+
+        verify(applicationEventPublisher).publishEvent(captor.capture());
+
+        assertEquals(purchase, captor.value.purchaseModel)
 
     }
 
